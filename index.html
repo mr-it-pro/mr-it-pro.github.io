@@ -15,8 +15,9 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-73712334-1', 'auto');
-  ga('send', 'pageview');
+  ga('create', 'UA-73712334-1', {'allowAnchor': true});
+  ga('require', 'linkid');
+  ga('send', 'pageview', { 'page': location.pathname + location.search + location.hash});
 
 </script>
 
@@ -452,7 +453,16 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
-
+    
+    <!-- GA #Anchor -->
+	<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.menu a').click(function(){
+            var match = jQuery(this).attr('href').match(/#\S+/);
+            ga('send', 'pageview', location.pathname + match[0]);
+        });
+    });
+	</script>
 </body>
 
 </html>
